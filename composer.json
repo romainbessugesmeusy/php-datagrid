@@ -1,0 +1,15 @@
+{
+    "name": "RBM/php-datagrid",
+    "description": "Datagrid",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Romain Bessuges",
+            "email": "romainbessuges@gmail.com"
+        }
+    ],
+    "require": {
+        "romainbessugesmeusy/php-sql-query": "*",
+        "romainbessugesmeusy/php-dsn-factory": "*"
+    }
+}
