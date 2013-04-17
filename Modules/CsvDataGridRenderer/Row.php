@@ -48,7 +48,7 @@ class Row extends \DataGrid\Renderer\Row
         return 'CsvDataGridRenderer\\Cell';
     }
 
-    public function _onAfterRender(ResultRow $row, $position, $count)
+    public function _onAfterRender(ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
         echo $this->getRowDelimiter();
     }

@@ -56,30 +56,27 @@ abstract class Cell
     /**
      * @param $cell
      * @param $row
-     * @param $columnIndex
-     * @param $columnCount
-     * @param $rowIndex
-     * @param $rowCount
+     * @param Metadata\Cell $metadata
      */
-    public function render($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function render($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
-        $this->_onBeforeRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount);
+        $this->_onBeforeRender($cell, $row, $metadata);
 
         foreach ($this->_callbacks as $callback) {
-            $cell = call_user_func($callback, $cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount);
+            $cell = call_user_func($callback, $cell, $row, $metadata);
         }
 
         echo (string) $cell;
 
-        $this->_onAfterRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount);
+        $this->_onAfterRender($cell, $row, $metadata);
     }
 
-    public function _onBeforeRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onBeforeRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
 
     }
 
-    public function _onAfterRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onAfterRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
 
     }

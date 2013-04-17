@@ -61,10 +61,10 @@ $dataGrid->addColumn("name", "name");
 $dataGrid->addColumn("identifier", "identifier");
 $dataGrid->addColumn("owner", "email");
 $dataGrid->limit(0, 100);
-$dataGrid->getRenderer('html')->getRowRenderer()->addClass(function($data, $rowIndex, $rowCount){
-    return ($rowIndex % 2) ? 'even' : 'odd';
+$dataGrid->getRenderer('html')->getRowRenderer()->addClass(function($data, \DataGrid\Renderer\Metadata\Row $metadata){
+    return $metadata->isRowEven() ? 'even' : 'odd';
 });
 $dataGrid->setOrderedActiveColumns(array("project_id", "owner", "identifier"));
 $dataGrid->getRenderer('csv')->setShowColumnNames(true);
-$dataGrid->getRenderer('html')->render();
+$dataGrid->getRenderer('csv')->render();
 

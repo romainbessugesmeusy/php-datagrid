@@ -4,6 +4,8 @@
 namespace DataGrid\Renderer;
 
 
+
+
 abstract class Row
 {
 
@@ -38,48 +40,53 @@ abstract class Row
      */
     public function getRenderer()
     {
-       return $this->_renderer;
+        return $this->_renderer;
     }
 
     /**
      * @param \DataGrid\Data\Processor\ResultRow $row
-     * @param $position
-     * @param $count
+     * @param Metadata\Row $metadata
      */
-    public function render(\DataGrid\Data\Processor\ResultRow $row, $position, $count)
+    public function render(\DataGrid\Data\Processor\ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
-        $this->_onBeforeRender($row, $position, $count);
-        $columns = $this->_dataGrid->getActiveColumnsOrdered();
+        $this->_onBeforeRender($row, $metadata);
+        $columns     = $this->_dataGrid->getActiveColumnsOrdered();
         $columnIndex = 0;
         $columnCount = count($columns);
 
         foreach ($columns as $columnName => $column) {
-                $cellRenderer = $this->getRenderer()->getCellRenderer($columnName);
-                $cellRenderer->render(
-                    $row->getCellDataForColumnName($columnName),
-                    $row->getData(),
-                    $columnIndex,
-                    $columnCount,
-                    $position,
-                    $count
-                );
+            $cellMetadata = new \DataGrid\Renderer\Metadata\Cell();
+            $cellMetadata->setRowCount($metadata->getRowCount());
+            $cellMetadata->setRowIndex($metadata->getRowIndex());
+            $cellMetadata->setColumnIndex($columnIndex);
+            $cellMetadata->setColumnCount($columnCount);
+            $cellRenderer = $this->getRenderer()->getCellRenderer($columnName);
+
+            $cellRenderer->render(
+                $row->getCellDataForColumnName($columnName),
+                $row->getData(),
+                $cellMetadata
+            );
+
             $columnIndex++;
         }
-        $this->_onAfterRender($row, $position, $count);
+        $this->_onAfterRender($row, $metadata);
     }
 
     /**
      * @param \DataGrid\Data\Processor\ResultRow $row
+     * @param Metadata\Row $metadata
      */
-    protected function _onBeforeRender(\DataGrid\Data\Processor\ResultRow $row, $position, $count)
+    protected function _onBeforeRender(\DataGrid\Data\Processor\ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
 
     }
 
     /**
      * @param \DataGrid\Data\Processor\ResultRow $row
+     * @param Metadata\Row $metadata
      */
-    protected function _onAfterRender(\DataGrid\Data\Processor\ResultRow $row, $position, $count)
+    protected function _onAfterRender(\DataGrid\Data\Processor\ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
 
     }

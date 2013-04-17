@@ -44,14 +44,14 @@ class Row extends \DataGrid\Renderer\Row
         return '\\HtmlDataGridRenderer\\Cell';
     }
 
-    protected function _onBeforeRender(\DataGrid\Data\Processor\ResultRow $row, $position, $count)
+    protected function _onBeforeRender(\DataGrid\Data\Processor\ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
         echo "<tr";
-        echo $this->getAttributes(array($row, $position, $count));
+        echo $this->getAttributes(array($row, $metadata));
         echo ">";
     }
 
-    protected function _onAfterRender(\DataGrid\Data\Processor\ResultRow $row, $position, $count)
+    protected function _onAfterRender(\DataGrid\Data\Processor\ResultRow $row, \DataGrid\Renderer\Metadata\Row $metadata)
     {
         echo "</tr>";
     }

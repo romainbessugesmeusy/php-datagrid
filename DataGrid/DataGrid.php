@@ -68,7 +68,7 @@ class DataGrid
     protected $_columnsPositions = array();
 
     /**
-     * @var \DataGrid\Data\Processor\AbstractProcessor
+     * @return \DataGrid\Data\Processor\AbstractProcessor
      */
     public function getProcessor()
     {

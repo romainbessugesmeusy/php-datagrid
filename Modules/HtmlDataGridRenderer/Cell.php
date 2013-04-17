@@ -44,14 +44,14 @@ class Cell extends \DataGrid\Renderer\Cell
         });
     }
 
-    public function _onBeforeRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onBeforeRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
         echo "<td";
-        echo $this->getAttributes(array($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount));
+        echo $this->getAttributes(array($cell, $row, $metadata));
         echo ">";
     }
 
-    public function _onAfterRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onAfterRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
         echo "</td>";
     }

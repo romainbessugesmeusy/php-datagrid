@@ -163,7 +163,10 @@ abstract class Renderer
         $this->_onBeforeRender($result);
 
         while ($row = $result->fetchRow()) {
-            $this->getRowRenderer()->render($row, $rowIndex, $result->getRowCount());
+            $metadata = new \DataGrid\Renderer\Metadata\Row();
+            $metadata->setRowIndex($rowIndex);
+            $metadata->setRowCount($result->getRowCount());
+            $this->getRowRenderer()->render($row, $metadata);
             $rowIndex++;
         }
 

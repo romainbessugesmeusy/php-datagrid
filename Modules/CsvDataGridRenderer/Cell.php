@@ -88,15 +88,15 @@ class Cell extends \DataGrid\Renderer\Cell
         return $this->_escapingCharacter;
     }
 
-    public function _onBeforeRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onBeforeRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
         echo $this->getEnclosingCharacter();
     }
 
-    public function _onAfterRender($cell, $row, $columnIndex, $columnCount, $rowIndex, $rowCount)
+    public function _onAfterRender($cell, $row, \DataGrid\Renderer\Metadata\Cell $metadata)
     {
         echo $this->getEnclosingCharacter();
-        if($columnIndex < $columnCount-1){
+        if($metadata->getColumnIndex() < $metadata->getColumnCount() -1){
             echo $this->getSeparatorCharacter();
         }
     }
