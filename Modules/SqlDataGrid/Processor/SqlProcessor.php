@@ -33,6 +33,7 @@ namespace SqlDataGrid\Processor;
 
 use DataGrid\Data\Processor\AbstractProcessor;
 use DataGrid\Exception;
+use RBM\SqlQuery\OrderBy;
 use RBM\SqlQuery\Select;
 
 class SqlProcessor extends AbstractProcessor
@@ -41,6 +42,8 @@ class SqlProcessor extends AbstractProcessor
      * @var \PDO
      */
     protected $_dbAdapter;
+
+    private $_totalRowCount;
 
     /**
      * @param \PDO $adapter
@@ -64,12 +67,13 @@ class SqlProcessor extends AbstractProcessor
      */
     public function getTotalRowCount()
     {
+        if(isset($this->_totalRowCount)) return $this->_totalRowCount;
 
         $countQuery = $this->getSelect()->count(true);
         if ($result = $this->_dbAdapter->query($countQuery)) {
-            return (int)$result->fetchColumn();
+            $this->_totalRowCount = (int)$result->fetchColumn();
         }
-        return 0;
+        return $this->_totalRowCount;
     }
 
     /**
@@ -107,7 +111,7 @@ class SqlProcessor extends AbstractProcessor
 
             $this->getSelect()->orderBy(
                 $column->getSortAccessor(),
-                $sort->getDirection()
+                $sort->getDirection() == SORT_ASC ? OrderBy::ASC : OrderBy::DESC
             );
         }
     }

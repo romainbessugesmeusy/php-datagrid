@@ -154,7 +154,7 @@ abstract class Renderer
      */
     public function render($return = false)
     {
-        ob_start();
+        if ($return) ob_start();
 
         $result = $this->_dataGrid->getProcessor()->process();
 
@@ -172,7 +172,7 @@ abstract class Renderer
 
         $this->_onAfterRender($result);
 
-        return ($return) ? ob_get_clean() : ob_get_flush();
+        if ($return) ob_get_clean();
     }
 
 
