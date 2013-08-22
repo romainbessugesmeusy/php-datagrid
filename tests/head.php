@@ -11,8 +11,7 @@ $layout = [
         "Âge"          => "age",
         "Localisation" => [
             "Ville" => [
-                "Ville" => "ville",
-                "<input type='search' name='ville'>" => "ville",
+                "<input type='text' name='ville'>" => "ville",
             ],
             "Pays"  => "pays",
         ],
