@@ -2,31 +2,7 @@
 
 require "../vendor/autoload.php";
 
-function customAutoLoader($class)
-{
-    $class = str_replace("RBM", "", $class);
-
-    $file = str_replace('\\', '/', $class) . '.php';
-
-    requireIfExists(__DIR__ . '/../library' . $file);
-}
-
-function requireIfExists($filename)
-{
-    if (file_exists($filename)) {
-        require $filename;
-        return true;
-    }
-    return false;
-}
-
 header("Content-Type: text/html;charset=UTF-8");
-
-spl_autoload_register('customAutoLoader');
-
-$layout = [
-    "prenom" => ["Utilisateur", "Prénom"],
-];
 
 $layout = [
     "Utilisateur" => [

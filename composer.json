@@ -13,8 +13,6 @@
         "romainbessugesmeusy/php-dsn-factory": "*"
     },
     "autoload": {
-        "psr-0": {
-            "RBM": "library/"
-        }
+        "psr-0": { "RBM": "library/." }
     }
 }
