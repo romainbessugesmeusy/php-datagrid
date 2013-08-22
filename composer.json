@@ -11,5 +11,10 @@
     "require": {
         "romainbessugesmeusy/php-sql-query": "*",
         "romainbessugesmeusy/php-dsn-factory": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "RBM": "library/"
+        }
     }
 }

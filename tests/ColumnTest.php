@@ -5,7 +5,7 @@
 class ColumnTest extends PHPUnit_Framework_TestCase
 {
     public function createDataGrid(){
-        return new \DataGrid\DataGrid();
+        return new\RBM\Datagrid\DataGrid();
     }
 
     /**
@@ -14,7 +14,7 @@ class ColumnTest extends PHPUnit_Framework_TestCase
     public function testConstructorName()
     {
         $dg = $this->createDataGrid();
-        new \DataGrid\Column($dg, null, 0);
+        new\RBM\Datagrid\Column($dg, null, 0);
     }
 
     /**
@@ -23,7 +23,7 @@ class ColumnTest extends PHPUnit_Framework_TestCase
     public function testConstructorIndex()
     {
         $dg = $this->createDataGrid();
-        new \DataGrid\Column($dg, "column", "not an integer");
+        new\RBM\Datagrid\Column($dg, "column", "not an integer");
     }
 
     /**
@@ -31,7 +31,7 @@ class ColumnTest extends PHPUnit_Framework_TestCase
      */
     public function testNameAccessors()
     {
-        $column = new \DataGrid\Column($this->createDataGrid(), "oldname", 0);
+        $column = new\RBM\Datagrid\Column($this->createDataGrid(), "oldname", 0);
         $this->assertEquals("oldname", $column->getName());
         $column->setName("newname");
         $this->assertEquals("newname", $column->getName());
@@ -43,7 +43,7 @@ class ColumnTest extends PHPUnit_Framework_TestCase
      */
     public function testActiveAccessors()
     {
-        $column = new \DataGrid\Column($this->createDataGrid(), "column", 0);
+        $column = new\RBM\Datagrid\Column($this->createDataGrid(), "column", 0);
         $this->assertEquals(true, $column->getActive(), 'a column is always active by default');
         $column->setActive(false);
         $this->assertEquals(false, $column->getActive());
