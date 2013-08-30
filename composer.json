@@ -1,18 +1,23 @@
 {
-    "name": "rbm/php-datagrid",
-    "description": "Datagrid",
+    "name"             : "rbm/php-datagrid",
+    "description"      : "Datagrid",
     "minimum-stability": "dev",
-    "authors": [
+    "authors"          : [
         {
-            "name": "Romain Bessuges",
+            "name" : "Romain Bessuges",
             "email": "romainbessuges@gmail.com"
         }
     ],
-    "require": {
-        "romainbessugesmeusy/php-sql-query": "*",
+    "require"          : {
+        "romainbessugesmeusy/php-sql-query"  : "*",
         "romainbessugesmeusy/php-dsn-factory": "*"
     },
-    "autoload": {
-        "psr-0": { "RBM": "library/." }
+    "autoload"         : {
+        "psr-0": {
+            "RBM": [
+                "library/.",
+                "modules/."
+            ]
+        }
     }
 }
